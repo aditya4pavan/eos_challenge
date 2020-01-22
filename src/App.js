@@ -42,6 +42,9 @@ export default function App() {
       <div className='col-12'>
         {
           blocks.map((e, i) => {
+            let text = e.transactions.flatMap(e => e.trx.transaction || { actions: [] }).map(x => x.actions).flat()
+            console.log(text);
+            let count = text.length;
             return (
               <ExpansionPanel key={e.id} expanded={expanded === e.id} onChange={handleChange(e.id)}>
                 <ExpansionPanelSummary
@@ -55,7 +58,7 @@ export default function App() {
                       <small> Timestamp: {new Date(Date.parse(e.timestamp)).toLocaleDateString()} {new Date(Date.parse(e.timestamp)).toLocaleTimeString()}</small>
                     </div>
                     <div className='col-12'>
-                      <small> Count: {e.transactions.length}</small>
+                      <small> No. of Actions: {count}</small>
                     </div>
                   </div>
                 </ExpansionPanelSummary>
