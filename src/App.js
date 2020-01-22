@@ -43,7 +43,7 @@ export default function App() {
         {
           blocks.map((e, i) => {
             let text = e.transactions.flatMap(e => e.trx.transaction || { actions: [] }).map(x => x.actions).flat()
-            console.log(text);
+            //console.log(text);
             let count = text.length;
             return (
               <ExpansionPanel key={e.id} expanded={expanded === e.id} onChange={handleChange(e.id)}>
@@ -64,7 +64,7 @@ export default function App() {
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                   <div className='col-12' style={{ maxHeight: '200px', overflow: 'auto' }}>
-                    <JSONPretty data={{ ...e, transactions: e.transactions.length > 2 ? 'Too many to display' : e.transactions }} />
+                    <JSONPretty data={{ ...e, transactions: e.transactions.length > 2 ? JSON.stringify(e.transactions) : e.transactions }} />
                   </div>
                 </ExpansionPanelDetails>
               </ExpansionPanel>
